@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { MapPin, Mail, User } from 'lucide-vue-next'
 
-const url = 'src/assets/profile-picture.jpg'
+const url = '/profile-picture.jpg'
 </script>
 
 <template>
