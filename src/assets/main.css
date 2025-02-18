@@ -5,15 +5,15 @@
 
 
 #app {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 1rem;
 }
 
 #content {
   max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
 }
 

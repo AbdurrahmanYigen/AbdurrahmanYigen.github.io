@@ -60,4 +60,13 @@ nav a:first-of-type {
     margin-top: 1rem;
   }
 }
+
+@media (max-width: 1023px) {
+  .header-nav-bar {
+    .dark-mode-switch {
+      position: absolute;
+      right: 0;
+    }
+  }
+}
 </style>

@@ -5,7 +5,7 @@ const url = '/profile-picture.jpg'
 </script>
 
 <template>
-  <div class="wrapper mb-3">
+  <div class="wrapper my-3">
     <el-image class="profile-picture-image" :src="url" fit="cover" />
 
     <div class="my-information">
@@ -23,8 +23,10 @@ const url = '/profile-picture.jpg'
   margin-bottom: 8px;
 
   img {
-    height: 400px;
-    width: 400px;
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     object-position: 45% 55%;
   }
