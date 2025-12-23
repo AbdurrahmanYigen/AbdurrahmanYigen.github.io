@@ -5,8 +5,9 @@ import { Moon, Sunny } from '@element-plus/icons-vue'
 
 const isDark = ref(localStorage.getItem('theme') === 'dark')
 
-watch(isDark, () => {
-  document.body.classList.toggle('dark', isDark.value)
+watch(isDark, (val) => {
+  localStorage.setItem('theme', val ? 'dark' : 'light')
+  document.documentElement.classList.toggle('dark', val)
 })
 </script>
 
