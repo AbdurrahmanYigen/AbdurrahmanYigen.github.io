@@ -19,3 +19,11 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 app.mount('#app')
+
+/*
+ * The transition effect must be added after mounting.
+ * Otherwise, there is a withe-to-dark transition when dark-mode is active and side is reloaded
+ */
+requestAnimationFrame(() => {
+  document.documentElement.classList.add('enable-theme-transition')
+})

@@ -1,0 +1,105 @@
+# A Record vs. CNAME
+
+If you manage a domain or set up a website, you will sooner or later come across terms like *A Record* and *CNAME*. But what do these entries in the DNS (Domain Name System) mean, when should you use which, and are there alternatives? In this blog, we clarify the most important questions.
+
+## What is an A Record?
+
+An *A Record* (Address Record) is a DNS entry that directly assigns a domain to an IPv4 address. For example, if you want *[www.my-domain.com](http://www.my-domain.com)* to point to the IP address *192.168.1.1*, this is done via an A Record.
+
+**Example:**
+
+```
+www.my-domain.com   IN  A   192.168.1.1
+```
+
+But when should you use an A Record?
+
+- When the domain should point directly to a fixed IP address.
+- When you run your own server and want to connect the domain to its IP.
+- When you want maximum control over DNS entries.
+
+An A Record can be set up in the customer area of the domain provider.
+
+## A Record for GitHub Pages & Co.
+
+If you want to use a custom domain with **GitHub Pages**, you can also use an A Record. GitHub provides official IP addresses that your domain must point to.
+
+**Steps:**
+
+1. Open the DNS management section of your domain provider.
+2. Create two **A Records** for your domain with the following IP addresses:
+   - `185.199.108.153`
+   - `185.199.109.153`
+   - `185.199.110.153`
+   - `185.199.111.153`
+3. If there are other A or CNAME Records for the root domain, remove them.
+4. Save the changes.
+5. In your GitHub repository, go to **Settings > Pages** and enter the custom domain.
+6. GitHub will automatically verify the DNS entry and establish the connection.
+
+GitHub recommends using a `CNAME` file in the repository instead if you want to use a **subdomain** (e.g., `www.my-domain.com`).
+
+## What is a CNAME Record?
+
+A *CNAME Record* (Canonical Name Record) is used to redirect a domain to another domain instead of pointing directly to an IP address. If the IP address of the target server changes, the CNAME remains unchanged.
+
+**Example:**
+
+```
+www.my-domain.com   IN  CNAME   hosting-provider.com
+```
+
+### When should you use a CNAME Record?
+
+- When you want to redirect a subdomain to another domain (e.g., *blog.my-domain.com* to *mysite.wordpress.com*).
+- When using a hosting provider or CDN (Content Delivery Network) that manages IP addresses.
+- When you want simpler management, as the target IP is automatically updated when changed.
+
+A CNAME Record can be set up in the customer area of the domain provider.
+
+## CNAME for GitHub Pages & Co.
+
+If you use a custom domain with **GitHub Pages**, there are two possible cases:
+
+1. **You use a root domain (e.g., ************************************************`my-domain.com`************************************************)** → Set up an **A Record** with your domain provider (see above).
+2. **You use a subdomain (e.g., ************************************************`www.my-domain.com`************************************************)** → You can either:
+   - **Set up a CNAME Record with your domain provider**, pointing to `yourusername.github.io`, **or**
+   - **Create a ************************************************`CNAME`************************************************ file in the root directory of your repository**, containing only the desired domain, e.g.:
+     ```
+     www.my-domain.com
+     ```
+     This file **must** be pushed to the root directory of the repository to correctly link the custom domain to GitHub Pages.
+
+If you use GitHub Pages with a subdomain, you can **either** set a CNAME Record with your domain provider **or** add the `CNAME` file to your repository – but **not both at the same time**.
+
+## Can you use A Record and CNAME at the same time?
+
+No, a single domain can have either an A Record or a CNAME Record, but not both simultaneously. A CNAME means that the domain completely points to another domain, and it is not allowed to have an A Record for the same domain.
+
+However, a domain with an A Record can have **subdomains** with CNAMEs. For example:
+
+```
+my-domain.com       IN  A      192.168.1.1
+www.my-domain.com   IN  CNAME  my-domain.com
+```
+
+Here, *my-domain.com* points directly to an IP address, while *[www.my-domain.com](http://www.my-domain.com)* refers to it.
+
+## What are the alternatives?
+
+If neither A Record nor CNAME is optimal, there are other options:
+
+- **AAAA Record**: Works like an A Record but for IPv6 addresses.
+- **ALIAS or ANAME Record**: A hybrid of A Record and CNAME, available from some providers for root domains.
+
+## Conclusion
+
+- **A Record** is useful when you have a fixed IP address.
+- **CNAME Record** is better when you want to redirect a domain to another domain.
+- **You cannot use both at the same time**, but A Records and CNAMEs can be combined for different purposes.
+- **Alternatives** like ALIAS or AAAA can be useful in certain situations.
+- **GitHub Pages & Co.** sometimes require a `CNAME` file in the root directory or A Records with specific GitHub IP addresses.
+- **For subdomains with GitHub Pages, you can either set a CNAME Record with your domain provider or add a ************************************************`CNAME`************************************************ file to the repository – but not both at the same time.**
+
+
+
