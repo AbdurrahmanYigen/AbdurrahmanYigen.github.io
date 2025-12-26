@@ -13,19 +13,18 @@ watch(isDark, (val) => {
 
 <template>
   <div class="header-nav-bar">
-    <nav class="my-nav-bar my-3">
-      <RouterLink to="/">About me</RouterLink>
-      <RouterLink to="/blog">Blog</RouterLink>
+    <nav class="my-nav-bar d-flex">
+      <RouterLink to="/" class="align-content-center">About me</RouterLink>
+      <RouterLink to="/blog" class="align-content-center">Blog</RouterLink>
+      <el-switch
+        v-model="isDark"
+        class="dark-mode-switch ms-auto"
+        size="large"
+        inline-prompt
+        :active-icon="Moon"
+        :inactive-icon="Sunny"
+      />
     </nav>
-
-    <el-switch
-      v-model="isDark"
-      class="dark-mode-switch"
-      size="large"
-      inline-prompt
-      :active-icon="Moon"
-      :inactive-icon="Sunny"
-    />
   </div>
 </template>
 
