@@ -5,8 +5,14 @@
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A.Yigen</title>
-    <script type="module" crossorigin src="/assets/index-Co1un51P.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BYdFpglt.css">
+    <script>
+      const theme = localStorage.getItem('theme')
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
+    <script type="module" crossorigin src="/assets/index-BiidUflC.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BD4VOnJK.css">
   </head>
   <body>
     <div id="app"></div>
